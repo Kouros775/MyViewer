@@ -1,3 +1,6 @@
 # obj, bin 제외
-/MyViewer/MyViewer/obj/
+.vs/
+.bin/
+.obj/
 /MyViewer/MyViewer/bin/
+/MyViewer/MyViewer/obj/
