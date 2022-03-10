@@ -7,20 +7,17 @@ namespace MyViewer.Model
     class CModelItem
     {
         public Color color { get; set; }
-        public float[] scale { get; set; }
         public float[] parameterArray { get; set; }
         public float[] normalArray { get; set; }
 
         public CModelItem()
         {
             color = Color.White;
-            scale = new float[3] { 1.0f, 1.0f, 1.0f };
         }
 
         public void Draw()
         {
             GL.PushMatrix();
-            GL.Scale(scale[0], scale[1], scale[2]);
             GL.EnableClientState(ArrayCap.VertexArray);
             GL.EnableClientState(ArrayCap.NormalArray);
             GL.VertexPointer(3, VertexPointerType.Float, 0, parameterArray);

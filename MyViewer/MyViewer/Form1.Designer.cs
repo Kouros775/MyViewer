@@ -44,6 +44,7 @@ namespace MyViewer
             this.glControl1.TabIndex = 0;
             this.glControl1.VSync = false;
             this.glControl1.Load += new System.EventHandler(this.glControl1_Load);
+            this.glControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.GL_Screen_Paint);
             // 
             // timer1
             // 
