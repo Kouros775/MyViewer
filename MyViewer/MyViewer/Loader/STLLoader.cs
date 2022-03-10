@@ -1,20 +1,11 @@
-﻿/*
-  ******************************************************************************
-  * @file    STLReader.cs
-  * @author  Ali Batuhan KINDAN
-  * @version V1.0.0
-  * @date    03.07.2018
-  * @brief   
-  ******************************************************************************
-*/
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Globalization;
 using System.Threading;
 
-
+using OpenTK;
+using MyViewer.Mesh;
 
 namespace MyViewer.Loader
 {
@@ -31,8 +22,6 @@ namespace MyViewer.Loader
         */
         public STLReader(string filePath = "")
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             path = filePath;
             processError = false;
         }
@@ -54,9 +43,9 @@ namespace MyViewer.Loader
         * @param  none
         * @retval meshList
         */
-        public TriangleMesh[] ReadFile()
+        public CTriangleMesh[] ReadFile()
         {
-            TriangleMesh[] meshList;
+            CTriangleMesh[] meshList;
 
             FileType stlFileType = GetFileType(path);
 
@@ -82,22 +71,22 @@ namespace MyViewer.Loader
         * @param  meshArray
         * @retval Vector3
         */
-        public Vector3 GetMinMeshPosition(TriangleMesh[] meshArray)
+        public Vector3 GetMinMeshPosition(CTriangleMesh[] meshArray)
         {
             Vector3 minVec = new Vector3();
             float[] minRefArray = new float[3];
-            minRefArray[0] = meshArray.Min(j => j.vert1.x);
-            minRefArray[1] = meshArray.Min(j => j.vert2.x);
-            minRefArray[2] = meshArray.Min(j => j.vert3.x);
-            minVec.x = minRefArray.Min();
-            minRefArray[0] = meshArray.Min(j => j.vert1.y);
-            minRefArray[1] = meshArray.Min(j => j.vert2.y);
-            minRefArray[2] = meshArray.Min(j => j.vert3.y);
-            minVec.y = minRefArray.Min();
-            minRefArray[0] = meshArray.Min(j => j.vert1.z);
-            minRefArray[1] = meshArray.Min(j => j.vert2.z);
-            minRefArray[2] = meshArray.Min(j => j.vert3.z);
-            minVec.z = minRefArray.Min();
+            minRefArray[0] = meshArray.Min(j => j.vert1.X);
+            minRefArray[1] = meshArray.Min(j => j.vert2.X);
+            minRefArray[2] = meshArray.Min(j => j.vert3.X);
+            minVec.X = minRefArray.Min();
+            minRefArray[0] = meshArray.Min(j => j.vert1.Y);
+            minRefArray[1] = meshArray.Min(j => j.vert2.Y);
+            minRefArray[2] = meshArray.Min(j => j.vert3.Y);
+            minVec.Y = minRefArray.Min();
+            minRefArray[0] = meshArray.Min(j => j.vert1.Z);
+            minRefArray[1] = meshArray.Min(j => j.vert2.Z);
+            minRefArray[2] = meshArray.Min(j => j.vert3.Z);
+            minVec.Z = minRefArray.Min();
             return minVec;
         }
 
@@ -107,22 +96,22 @@ namespace MyViewer.Loader
         * @param  meshArray
         * @retval Vector3
         */
-        public Vector3 GetMaxMeshPosition(TriangleMesh[] meshArray)
+        public Vector3 GetMaxMeshPosition(CTriangleMesh[] meshArray)
         {
             Vector3 maxVec = new Vector3();
             float[] maxRefArray = new float[3];
-            maxRefArray[0] = meshArray.Max(j => j.vert1.x);
-            maxRefArray[1] = meshArray.Max(j => j.vert2.x);
-            maxRefArray[2] = meshArray.Max(j => j.vert3.x);
-            maxVec.x = maxRefArray.Max();
-            maxRefArray[0] = meshArray.Max(j => j.vert1.y);
-            maxRefArray[1] = meshArray.Max(j => j.vert2.y);
-            maxRefArray[2] = meshArray.Max(j => j.vert3.y);
-            maxVec.y = maxRefArray.Max();
-            maxRefArray[0] = meshArray.Max(j => j.vert1.z);
-            maxRefArray[1] = meshArray.Max(j => j.vert2.z);
-            maxRefArray[2] = meshArray.Max(j => j.vert3.z);
-            maxVec.z = maxRefArray.Max();
+            maxRefArray[0] = meshArray.Max(j => j.vert1.X);
+            maxRefArray[1] = meshArray.Max(j => j.vert2.X);
+            maxRefArray[2] = meshArray.Max(j => j.vert3.X);
+            maxVec.X = maxRefArray.Max();
+            maxRefArray[0] = meshArray.Max(j => j.vert1.Y);
+            maxRefArray[1] = meshArray.Max(j => j.vert2.Y);
+            maxRefArray[2] = meshArray.Max(j => j.vert3.Y);
+            maxVec.Y = maxRefArray.Max();
+            maxRefArray[0] = meshArray.Max(j => j.vert1.Z);
+            maxRefArray[1] = meshArray.Max(j => j.vert2.Z);
+            maxRefArray[2] = meshArray.Max(j => j.vert3.Z);
+            maxVec.Z = maxRefArray.Max();
             return maxVec;
         }
 
@@ -141,7 +130,7 @@ namespace MyViewer.Loader
             {
                 int lineCount = 0;
                 lineCount = File.ReadLines(filePath).Count(); // number of lines in the file
-
+                
                 string firstLine = File.ReadLines(filePath).First();
 
                 string endLines = File.ReadLines(filePath).Skip(lineCount - 1).Take(1).First() +
@@ -174,9 +163,9 @@ namespace MyViewer.Loader
         * @param  filePath
         * @retval meshList
         */
-        private TriangleMesh[] ReadBinaryFile(string filePath)
+        private CTriangleMesh[] ReadBinaryFile(string filePath)
         {
-            List<TriangleMesh> meshList = new List<TriangleMesh>();
+            List<CTriangleMesh> meshList = new List<CTriangleMesh>();
             int numOfMesh = 0;
             int i = 0;
             int byteIndex = 0;
@@ -199,17 +188,17 @@ namespace MyViewer.Loader
 
                 for (i = 0; i < numOfMesh; i++)
                 {
-                    TriangleMesh newMesh = new TriangleMesh();
+                    CTriangleMesh newMesh = new CTriangleMesh();
 
                     /* this try-catch block will be reviewed */
                     try
                     {
                         /* face normal */
-                        newMesh.normal1.x = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
+                        newMesh.normal1.X = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
                         byteIndex += 4;
-                        newMesh.normal1.y = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
+                        newMesh.normal1.Y = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
                         byteIndex += 4;
-                        newMesh.normal1.z = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
+                        newMesh.normal1.Z = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
                         byteIndex += 4;
 
                         /* normals of vertex 2 and 3 equals to vertex 1's normals */
@@ -217,27 +206,27 @@ namespace MyViewer.Loader
                         newMesh.normal3 = newMesh.normal1;
 
                         /* vertex 1 */
-                        newMesh.vert1.x = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
+                        newMesh.vert1.X = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
                         byteIndex += 4;
-                        newMesh.vert1.y = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
+                        newMesh.vert1.Y = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
                         byteIndex += 4;
-                        newMesh.vert1.z = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
+                        newMesh.vert1.Z = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
                         byteIndex += 4;
 
                         /* vertex 2 */
-                        newMesh.vert2.x = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
+                        newMesh.vert2.X = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
                         byteIndex += 4;
-                        newMesh.vert2.y = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
+                        newMesh.vert2.Y = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
                         byteIndex += 4;
-                        newMesh.vert2.z = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
+                        newMesh.vert2.Z = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
                         byteIndex += 4;
 
                         /* vertex 3 */
-                        newMesh.vert3.x = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
+                        newMesh.vert3.X = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
                         byteIndex += 4;
-                        newMesh.vert3.y = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
+                        newMesh.vert3.Y = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
                         byteIndex += 4;
-                        newMesh.vert3.z = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
+                        newMesh.vert3.Z = System.BitConverter.ToSingle(new byte[] { fileBytes[byteIndex], fileBytes[byteIndex + 1], fileBytes[byteIndex + 2], fileBytes[byteIndex + 3] }, 0);
                         byteIndex += 4;
 
                         byteIndex += 2; // Attribute byte count
@@ -267,9 +256,9 @@ namespace MyViewer.Loader
         * @param  filePath
         * @retval meshList
         */
-        private TriangleMesh[] ReadASCIIFile(string filePath)
+        private CTriangleMesh[] ReadASCIIFile(string filePath)
         {
-            List<TriangleMesh> meshList = new List<TriangleMesh>();
+            List<CTriangleMesh> meshList = new List<CTriangleMesh>();
 
             StreamReader txtReader = new StreamReader(filePath);
 
@@ -292,15 +281,15 @@ namespace MyViewer.Loader
                             break;
                         }
 
-                        TriangleMesh newMesh = new TriangleMesh(); // define new mesh object
+                        CTriangleMesh newMesh = new CTriangleMesh(); // define new mesh object
 
                         /* this try-catch block will be reviewed */
                         try
                         {
                             // FaceNormal 
-                            newMesh.normal1.x = float.Parse(lineData[2]);
-                            newMesh.normal1.y = float.Parse(lineData[3]);
-                            newMesh.normal1.z = float.Parse(lineData[4]);
+                            newMesh.normal1.X = float.Parse(lineData[2]);
+                            newMesh.normal1.Y = float.Parse(lineData[3]);
+                            newMesh.normal1.Z = float.Parse(lineData[4]);
 
                             /* normals of vertex 2 and 3 equals to vertex 1's normals */
                             newMesh.normal2 = newMesh.normal1;
@@ -316,9 +305,9 @@ namespace MyViewer.Loader
                             while (lineString.IndexOf("  ") != -1) lineString = lineString.Replace("  ", " ");
                             lineData = lineString.Split(' ');
 
-                            newMesh.vert1.x = float.Parse(lineData[1]); // x1
-                            newMesh.vert1.y = float.Parse(lineData[2]); // y1
-                            newMesh.vert1.z = float.Parse(lineData[3]); // z1
+                            newMesh.vert1.X = float.Parse(lineData[1]); // x1
+                            newMesh.vert1.Y = float.Parse(lineData[2]); // y1
+                            newMesh.vert1.Z = float.Parse(lineData[3]); // z1
 
                             // Vertex2
                             lineString = txtReader.ReadLine().Trim();
@@ -326,9 +315,9 @@ namespace MyViewer.Loader
                             while (lineString.IndexOf("  ") != -1) lineString = lineString.Replace("  ", " ");
                             lineData = lineString.Split(' ');
 
-                            newMesh.vert2.x = float.Parse(lineData[1]); // x2
-                            newMesh.vert2.y = float.Parse(lineData[2]); // y2
-                            newMesh.vert2.z = float.Parse(lineData[3]); // z2
+                            newMesh.vert2.X = float.Parse(lineData[1]); // x2
+                            newMesh.vert2.Y = float.Parse(lineData[2]); // y2
+                            newMesh.vert2.Z = float.Parse(lineData[3]); // z2
 
                             // Vertex3
                             lineString = txtReader.ReadLine().Trim();
@@ -336,9 +325,9 @@ namespace MyViewer.Loader
                             while (lineString.IndexOf("  ") != -1) lineString = lineString.Replace("  ", " ");
                             lineData = lineString.Split(' ');
 
-                            newMesh.vert3.x = float.Parse(lineData[1]); // x3
-                            newMesh.vert3.y = float.Parse(lineData[2]); // y3
-                            newMesh.vert3.z = float.Parse(lineData[3]); // z3
+                            newMesh.vert3.X = float.Parse(lineData[1]); // x3
+                            newMesh.vert3.Y = float.Parse(lineData[2]); // y3
+                            newMesh.vert3.Z = float.Parse(lineData[3]); // z3
                         }
                         catch
                         {
