@@ -22,5 +22,10 @@ namespace MyViewer
         {
 
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            glControl1.Invalidate();
+        }
     }
 }

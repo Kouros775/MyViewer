@@ -29,7 +29,9 @@ namespace MyViewer
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.glControl1 = new OpenTK.GLControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // glControl1
@@ -42,6 +44,11 @@ namespace MyViewer
             this.glControl1.TabIndex = 0;
             this.glControl1.VSync = false;
             this.glControl1.Load += new System.EventHandler(this.glControl1_Load);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 25;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -58,6 +65,7 @@ namespace MyViewer
         #endregion
 
         private OpenTK.GLControl glControl1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
