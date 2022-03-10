@@ -2,7 +2,7 @@
 
 namespace MyViewer.Mesh
 {
-    class CTriangleMesh : CMesh
+    public class CTriangleMesh : CMesh
     {
         public Vector3 normal1;
         public Vector3 normal2;

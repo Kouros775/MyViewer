@@ -74,6 +74,7 @@ namespace MyViewer.Loader
         public Vector3 GetMinMeshPosition(CTriangleMesh[] meshArray)
         {
             Vector3 minVec = new Vector3();
+
             float[] minRefArray = new float[3];
             minRefArray[0] = meshArray.Min(j => j.vert1.X);
             minRefArray[1] = meshArray.Min(j => j.vert2.X);
@@ -87,6 +88,7 @@ namespace MyViewer.Loader
             minRefArray[1] = meshArray.Min(j => j.vert2.Z);
             minRefArray[2] = meshArray.Min(j => j.vert3.Z);
             minVec.Z = minRefArray.Min();
+
             return minVec;
         }
 
@@ -99,6 +101,7 @@ namespace MyViewer.Loader
         public Vector3 GetMaxMeshPosition(CTriangleMesh[] meshArray)
         {
             Vector3 maxVec = new Vector3();
+
             float[] maxRefArray = new float[3];
             maxRefArray[0] = meshArray.Max(j => j.vert1.X);
             maxRefArray[1] = meshArray.Max(j => j.vert2.X);
@@ -112,6 +115,7 @@ namespace MyViewer.Loader
             maxRefArray[1] = meshArray.Max(j => j.vert2.Z);
             maxRefArray[2] = meshArray.Max(j => j.vert3.Z);
             maxVec.Z = maxRefArray.Max();
+
             return maxVec;
         }
 

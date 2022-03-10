@@ -1,6 +1,6 @@
 ﻿namespace MyViewer.Mesh
 {
-    class CMesh
+    public class CMesh
     {
     }
 }
