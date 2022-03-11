@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\CommandTransform_Translate.cs" />
+    <Compile Include="Command\CommandTransform.cs" />
     <Compile Include="Command\CommandReadFile.cs" />
     <Compile Include="Command\Command.cs" />
     <Compile Include="Doc\ModelDocument.cs" />
@@ -68,6 +70,8 @@
     <Compile Include="Mesh\Mesh.cs" />
     <Compile Include="Renderer\Renderer.cs" />
     <Compile Include="Scene\Scene.cs" />
+    <Compile Include="Transform\Transform_Translate.cs" />
+    <Compile Include="Transform\Transform.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
