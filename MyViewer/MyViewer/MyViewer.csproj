@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="Command\CommandReadFile.cs" />
     <Compile Include="Command\Command.cs" />
+    <Compile Include="Doc\ModelDocument.cs" />
+    <Compile Include="Doc\Document.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

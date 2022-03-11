@@ -20,7 +20,7 @@ namespace MyViewer.Renderer
         {
             bool bRes = false;
 
-            if(IsContainIndex(index))
+            if (IsContainIndex(index))
             {
                 bRes = false;
             }
@@ -30,14 +30,29 @@ namespace MyViewer.Renderer
                 bRes = true;
             }
 
-            return bRes;   
+            return bRes;
         }
+        public bool RemoveModel(int index)
+        {
+            bool bRes = false;
 
+            if (IsContainIndex(index))
+            {
+                _modelItems.Remove(index);
+                bRes = true;
+            }
+            else
+            {
+                bRes = false;
+            }
+
+            return bRes;
+        }
         public bool IsContainIndex(int index)
         {
             bool bRes = false;
 
-            if(_modelItems.ContainsKey(index))
+            if (_modelItems.ContainsKey(index))
             {
                 bRes = true;
             }
