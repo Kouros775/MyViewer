@@ -28,5 +28,63 @@ namespace MyViewer.Model
             GL.DisableClientState(ArrayCap.VertexArray);
             GL.PopMatrix();
         }
+
+
+        public static void DrawCube(int size)
+        {
+            /* draw unit cube then scale it with given size */
+            GL.PushMatrix();
+            GL.Scale(size, size, size);
+
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.Crimson);
+            GL.Vertex3(0.5f, 0.5f, -0.5f);
+            GL.Vertex3(-0.5f, 0.5f, -0.5f);
+            GL.Vertex3(-0.5f, -0.5f, -0.5f);
+            GL.Vertex3(0.5f, -0.5f, -0.5f);
+            GL.End();
+
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.Yellow);
+            GL.Vertex3(0.5f, 0.5f, 0.5f);
+            GL.Vertex3(-0.5f, 0.5f, 0.5f);
+            GL.Vertex3(-0.5f, -0.5f, 0.5f);
+            GL.Vertex3(0.5f, -0.5f, 0.5f);
+            GL.End();
+
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.DarkOrange);
+            GL.Vertex3(0.5f, 0.5f, 0.5f);
+            GL.Vertex3(0.5f, -0.5f, 0.5f);
+            GL.Vertex3(0.5f, -0.5f, -0.5f);
+            GL.Vertex3(0.5f, 0.5f, -0.5f);
+            GL.End();
+
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.BlueViolet);
+            GL.Vertex3(-0.5f, 0.5f, 0.5f);
+            GL.Vertex3(-0.5f, -0.5f, 0.5f);
+            GL.Vertex3(-0.5f, -0.5f, -0.5f);
+            GL.Vertex3(-0.5f, 0.5f, -0.5f);
+            GL.End();
+
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.Purple);
+            GL.Vertex3(0.5f, 0.5f, 0.5f);
+            GL.Vertex3(-0.5f, 0.5f, 0.5f);
+            GL.Vertex3(-0.5f, 0.5f, -0.5f);
+            GL.Vertex3(0.5f, 0.5f, -0.5f);
+            GL.End();
+
+            GL.Begin(PrimitiveType.Quads);
+            GL.Color3(Color.LightSeaGreen);
+            GL.Vertex3(0.5f, -0.5f, 0.5f);
+            GL.Vertex3(-0.5f, -0.5f, 0.5f);
+            GL.Vertex3(-0.5f, -0.5f, -0.5f);
+            GL.Vertex3(0.5f, -0.5f, -0.5f);
+            GL.End();
+
+            GL.PopMatrix();
+        }
     }
 }

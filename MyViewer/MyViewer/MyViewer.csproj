@@ -67,6 +67,7 @@
     <Compile Include="Mesh\TriangleMesh.cs" />
     <Compile Include="Mesh\Mesh.cs" />
     <Compile Include="Renderer\Renderer.cs" />
+    <Compile Include="Scene\Scene.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
