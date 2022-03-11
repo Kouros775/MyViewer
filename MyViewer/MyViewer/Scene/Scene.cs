@@ -6,16 +6,10 @@ using System.Text;
 using MyViewer.Model;
 using MyViewer.Renderer;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyViewer.Scene
 {
-    enum E_BUTTON_STATE
-    {
-        LEFT,
-        RIGHT,
-        MIDDLE
-    }
-
     class CScene
     {
         private CRenderer _renderer = new CRenderer();
@@ -34,23 +28,14 @@ namespace MyViewer.Scene
             _renderer.DrawModel();
         }
 
-        public void OnMouseDown(Point point, E_BUTTON_STATE state)
+        public void OnMouseDown(Point point, MouseButtons buttonState)
         {
             _pointStart = point;
         }
-        public void OnMouseMove(Point point, E_BUTTON_STATE state)
+        public void OnMouseMove(Point point, MouseButtons buttonState)
         {
-            switch (state)
-            {
-                case E_BUTTON_STATE.LEFT:
-                    break;
-                case E_BUTTON_STATE.RIGHT:
-                    break;
-                default:
-                    break;
-            }
         }
-        public void OnMouseUp(Point point, E_BUTTON_STATE state)
+        public void OnMouseUp(Point point, MouseButtons buttonState)
         {
 
         }

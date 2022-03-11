@@ -54,19 +54,20 @@ namespace MyViewer
 
         private void glControl1_MouseDown(object sender, MouseEventArgs e)
         {
-            Point mouseDownLocation = new Point(e.X, e.Y);  
+            Point mouseDownLocation = new Point(e.X, e.Y);
+            _scene.OnMouseDown(mouseDownLocation, e.Button);
         }
 
         private void glControl1_MouseMove(object sender, MouseEventArgs e)
         {
             Point mouseMoveLocation = new Point(e.X, e.Y);
-
+            _scene.OnMouseMove(mouseMoveLocation, e.Button);
         }
 
         private void glControl1_MouseUp(object sender, MouseEventArgs e)
         {
             Point mouseUpLocation = new Point(e.X, e.Y);
-
+            _scene.OnMouseUp(mouseUpLocation, e.Button);
         }
     }
 }
