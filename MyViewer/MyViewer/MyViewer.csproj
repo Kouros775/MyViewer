@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\CCommandList.cs" />
     <Compile Include="Command\CommandTransform_Translate.cs" />
     <Compile Include="Command\CommandTransform.cs" />
     <Compile Include="Command\CommandReadFile.cs" />

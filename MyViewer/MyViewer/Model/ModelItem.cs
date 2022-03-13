@@ -6,6 +6,13 @@ namespace MyViewer.Model
 {
     class CModelItem
     {
+        private string strName;
+        public string Name
+        {
+            get;
+            set;
+        }
+
         public Color color { get; set; }
         public float[] parameterArray { get; set; }
         public float[] normalArray { get; set; }
