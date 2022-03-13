@@ -38,6 +38,7 @@ namespace MyViewer.Doc
                 }
                 else
                 {
+                    model.Name = strName;
                     _modelItems.Add(strName, model);
                 }
             }

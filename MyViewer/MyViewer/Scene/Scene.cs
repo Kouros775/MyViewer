@@ -5,6 +5,7 @@ using System.Text;
 
 using MyViewer.Model;
 using MyViewer.Renderer;
+using MyViewer.Doc;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -41,7 +42,9 @@ namespace MyViewer.Scene
         }
         public void TEMP_AddModel()
         {
-
+            string strCubeName = "Cube";
+            CModelItem modelCube = ModelDocument.Instance().GetModelItem(strCubeName);
+            _renderer.AddModel(modelCube, 1);
         }
     }
 }

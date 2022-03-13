@@ -15,9 +15,6 @@ namespace MyViewer.Command
 {
     class CCommandReadFile : ICommand
     {
-        public string FilePath { get; set; }
-
-
         public void Execute()
         {
             _openDialog();
@@ -41,17 +38,19 @@ namespace MyViewer.Command
 
             CTriangleMesh[] meshArray = stlReader.ReadFile();
 
-            string strName = "";
+
+            
+
             CModelItem modelItem = new CModelItem();
-            modelItem.Name = strName;
+            modelItem.Name = System.IO.Path.GetFileNameWithoutExtension(strPath);
             modelItem.parameterArray = CSTLExport.Get_Mesh_Vertices(meshArray);
             modelItem.normalArray = CSTLExport.Get_Mesh_Normals(meshArray);
             modelItem._minPos = stlReader.GetMinMeshPosition(meshArray);
             modelItem._maxPos = stlReader.GetMaxMeshPosition(meshArray);
            
-            if (stlReader.Get_Process_Error() == true)
+            if (stlReader.Get_Process_Error() == false)
             {
-                ModelDocument.Instance().AddModel(modelItem, strName);
+                ModelDocument.Instance().AddModel(modelItem, modelItem.Name);
                 bRes = true;
             }
 

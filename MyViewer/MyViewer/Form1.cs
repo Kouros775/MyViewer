@@ -78,7 +78,8 @@ namespace MyViewer
         }
         private void button2_Click(object sender, EventArgs e)
         {
-
+            _scene.TEMP_AddModel();
+            glControl1.Invalidate();
         }
         #endregion
     }
