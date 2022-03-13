@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 using OpenTK.Graphics.OpenGL;
-
+using OpenTK;
 
 namespace MyViewer.Model
 {
@@ -16,7 +16,8 @@ namespace MyViewer.Model
         public Color color { get; set; }
         public float[] parameterArray { get; set; }
         public float[] normalArray { get; set; }
-
+        public Vector3 _minPos { get; set; }
+        public Vector3 _maxPos { get; set; }
         public CModelItem()
         {
             color = Color.White;

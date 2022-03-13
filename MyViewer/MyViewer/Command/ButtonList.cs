@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using MyViewer.Command;
 
 namespace MyViewer.Command
 {
@@ -11,15 +10,15 @@ namespace MyViewer.Command
     {
         READFILE
     }
-    class CCommandList
+    class CButtonList
     {
         private Dictionary<E_COMMAND, ICommand> _dicCommand = new Dictionary<E_COMMAND, ICommand>();
 
-        public CCommandList()
+        public CButtonList()
         {
 
         }
-        ~CCommandList()
+        ~CButtonList()
         {
 
         }

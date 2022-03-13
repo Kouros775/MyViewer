@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command\CCommandList.cs" />
+    <Compile Include="Command\ButtonList.cs" />
     <Compile Include="Command\CommandTransform_Translate.cs" />
     <Compile Include="Command\CommandTransform.cs" />
     <Compile Include="Command\CommandReadFile.cs" />
@@ -63,6 +63,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Loader\STLExport.cs" />
     <Compile Include="Loader\STLLoader.cs" />
     <Compile Include="Model\ModelItem.cs" />
     <Compile Include="Program.cs" />

@@ -17,12 +17,12 @@ namespace MyViewer
     public partial class Form1 : Form
     {
         private CScene _scene = new CScene();
-        private CCommandList _listCommand = new CCommandList();
+        private CButtonList _listButton = new CButtonList();
 
         public Form1()
         {
             InitializeComponent();
-            _listCommand.AddCommand(E_COMMAND.READFILE);
+            _listButton.AddCommand(E_COMMAND.READFILE);
         }
 
         #region LOAD
@@ -74,7 +74,7 @@ namespace MyViewer
         #region BUTTONS
         private void btn_FileLoad(object sender, EventArgs e)
         {
-            _listCommand.Execute(E_COMMAND.READFILE);
+            _listButton.Execute(E_COMMAND.READFILE);
         }
         private void button2_Click(object sender, EventArgs e)
         {

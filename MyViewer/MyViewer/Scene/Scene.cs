@@ -39,5 +39,9 @@ namespace MyViewer.Scene
         {
 
         }
+        public void TEMP_AddModel()
+        {
+
+        }
     }
 }
